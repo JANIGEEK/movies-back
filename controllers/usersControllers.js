@@ -6,7 +6,7 @@ const User = require('../models/usersModel')
 const crearUser = asyncHandler(async (req, res) => {
 
     //Desestructuramos el body
-    const { name, email, password } = req.body
+    const { name, userName, email, password } = req.body
 
     //verificamos que nos pasen todos los datos necesarios para crear un usuario
     if (!name || !email || !password) {
@@ -28,6 +28,7 @@ const crearUser = asyncHandler(async (req, res) => {
     //Crear el usuario
     const user = await User.create({
         name,
+        userName,
         email,
         password: hashedPassword
     })
@@ -35,6 +36,7 @@ const crearUser = asyncHandler(async (req, res) => {
     if (user) {
         res.status(201).json({
             _id: user.id,
+            userName: user.userName,
             name: user.name,
             email: user.email
         })
