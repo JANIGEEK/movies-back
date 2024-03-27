@@ -22,6 +22,9 @@ const movieSchema = mongoose.Schema({
     },
     vote_count:{
         type:Number
+    },
+    likes:{
+        type:Number
     }
 },{
     timestamps:true
