@@ -5,6 +5,10 @@ const userSchema = mongoose.Schema({
         type: String,
         require:[true, "Ingresa tu nombre"]
     },
+    lastName:{
+        type:String,
+        require:[true,"Ingresa tu apellido"]
+    },
     userName:{
         type:String,
         require:[true,"Ingresa un ususario"],

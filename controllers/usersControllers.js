@@ -6,10 +6,10 @@ const User = require('../models/usersModel')
 const crearUser = asyncHandler(async (req, res) => {
 
     //Desestructuramos el body
-    const { name, userName, email, password } = req.body
+    const { name, lastName, userName, email, password } = req.body
 
     //verificamos que nos pasen todos los datos necesarios para crear un usuario
-    if (!name || !email || !password) {
+    if (!name || !userName || !lastName || !email || !password) {
         res.status(400)
         throw new Error('Faltan datos')
     }
@@ -28,6 +28,7 @@ const crearUser = asyncHandler(async (req, res) => {
     //Crear el usuario
     const user = await User.create({
         name,
+        lastName,
         userName,
         email,
         password: hashedPassword
@@ -38,6 +39,7 @@ const crearUser = asyncHandler(async (req, res) => {
             _id: user.id,
             userName: user.userName,
             name: user.name,
+            lastName: user.lastName,
             email: user.email
         })
     } else {
